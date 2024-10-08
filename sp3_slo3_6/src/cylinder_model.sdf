@@ -1,0 +1,33 @@
+<!-- Save this file as `cylinder_model.sdf` -->
+<sdf version="1.6">
+  <model name="cylinder">
+    <pose>0 0 0 0 0 0</pose>
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.15</radius>  <!-- 30 cm diameter -->
+            <length>1.0</length>   <!-- 1 meter height -->
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+        </surface>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.15</radius>
+            <length>1.0</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0 0 1 1</ambient> <!-- Blue cylinder -->
+          <diffuse>0 0 1 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
