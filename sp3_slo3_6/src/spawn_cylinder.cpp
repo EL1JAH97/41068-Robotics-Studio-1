@@ -4,10 +4,25 @@
 #include <fstream>
 #include <string>
 
+/**
+ * @file spawn_cylinder.cpp
+ * @brief This node spawns a cylindrical object in the Gazebo simulation environment.
+ */
+
+/**
+ * @class SpawnCylinderNode
+ * @brief A ROS 2 node responsible for spawning a cylinder entity in the simulation.
+ */
 class SpawnCylinderNode : public rclcpp::Node
 {
 public:
+    /**
+     * @brief Constructor for the SpawnCylinderNode class.
+     * The constructor creates a service client to call the `/spawn_entity` service,
+     * loads the SDF file for the cylinder, and sends the request to spawn the cylinder.
+     */
     SpawnCylinderNode() : Node("spawn_cylinder_node")
+    
     {
         // Create a client to call the spawn entity service
         client_ = this->create_client<gazebo_msgs::srv::SpawnEntity>("/spawn_entity");
@@ -29,9 +44,9 @@ public:
         }
 
         // Set the position where the cylinder should be spawned
-        float cylinder_x = 3.0;  // X-coordinate
-        float cylinder_y = 2.0;  // Y-coordinate
-        float cylinder_z = 0.0;  // Z-coordinate (height)
+        float cylinder_x = 3.0;  ///< X-coordinate
+        float cylinder_y = 2.0;  ///< Y-coordinate
+        float cylinder_z = 0.0;  ///< Z-coordinate (height)
 
         // Create the request to spawn the cylinder
         auto request = std::make_shared<gazebo_msgs::srv::SpawnEntity::Request>();
@@ -59,9 +74,16 @@ public:
     }
 
 private:
+    /// Client for the `/spawn_entity` service to spawn objects in Gazebo.
     rclcpp::Client<gazebo_msgs::srv::SpawnEntity>::SharedPtr client_;
 };
 
+/**
+ * @brief Main function to initialize and run the SpawnCylinderNode.
+ * @param argc Number of command-line arguments.
+ * @param argv Array of command-line arguments.
+ * @return Integer representing success or failure.
+ */
 int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
